@@ -34,8 +34,38 @@ public class ArrayListSorter {
 		}
 	}
 	
-	private static <T extends Comparable<? super T>> void merge(ArrayList<T> arrayList, ArrayList<T> tempArrayList, int left, int mid, int right) {
-		
+	private static <T extends Comparable<? super T>> void merge(ArrayList<T> arrayList, ArrayList<T> tempArrayList, int leftStart, int rightStart, int rightBound) {
+		int leftCursor = leftStart;
+		int rightCursor = rightStart;
+		int leftBound = rightStart - 1; 
+		int tempIndex = leftStart;
+		while (leftCursor <= leftBound && rightCursor <= rightBound) {
+			if (arrayList.get(leftCursor).compareTo(arrayList.get(rightCursor)) < 0) { //if element at left cursor is "less than" element at right cursor
+				tempArrayList.set(tempIndex, arrayList.get(leftCursor)); //set next position of temp list to be element at left cursor
+				tempIndex++;
+				leftCursor++;
+				
+			} else {
+				tempArrayList.set(tempIndex, arrayList.get(rightCursor)); //set next position of temp list to be element at right cursor
+				tempIndex++;
+				rightCursor++;
+			}
+		}
+		if (leftCursor <= leftBound) { //if elements remain in the left sublist
+			while(leftCursor <= leftBound) {
+				tempArrayList.set(tempIndex, arrayList.get(leftCursor));
+				tempIndex++;
+				leftCursor++;
+			}
+		}
+		if (rightCursor <= rightBound) {
+			tempArrayList.set(tempIndex, arrayList.get(rightCursor));
+			tempIndex++;
+			rightCursor++;
+		}
+		for (int i = leftStart; i < rightBound + 1; i++) {
+			arrayList.set(i, tempArrayList.get(i));
+		}
 	}
 	
 	private static <T extends Comparable<? super T>> ArrayList<T> generateEmptyArrayList(int n) {
