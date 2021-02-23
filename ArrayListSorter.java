@@ -2,8 +2,7 @@ package assign05;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import assign04.OutOfRangeException;
+import java.util.Iterator;
 
 /**
  * Add description here
@@ -21,9 +20,29 @@ public class ArrayListSorter {
 	 * @throws exception - description for why exception was thrown
 	 * @return return description
 	 */
-	public static <T extends Comparable<? super T>> void mergesort(ArrayList<T>) {
-		// TODO Auto-generated method stub
-
+	public static <T extends Comparable<? super T>> void mergesort(ArrayList<T> arrayList) {
+		ArrayList<T> tempArrayList = generateEmptyArrayList(arrayList.size());
+		mergesort(arrayList, tempArrayList, 0, arrayList.size() - 1);
+	}
+	
+	private static <T extends Comparable<? super T>> void mergesort(ArrayList<T> arrayList, ArrayList<T> tempArrayList, int left, int right) {
+		if (left < right) {
+			int mid = (left + right) / 2;
+			mergesort(arrayList, tempArrayList, left, mid);
+			mergesort(arrayList, tempArrayList, mid + 1, right);
+			merge(arrayList, tempArrayList, left, mid + 1, right);
+		}
+	}
+	
+	private static <T extends Comparable<? super T>> void merge(ArrayList<T> arrayList, ArrayList<T> tempArrayList, int left, int mid, int right) {
+		
+	}
+	
+	private static <T extends Comparable<? super T>> ArrayList<T> generateEmptyArrayList(int n) {
+		ArrayList<T> arrayList = new ArrayList<>();
+		for (int i = 0; i < n; i++)
+			arrayList.add(null);
+		return arrayList;
 	}
 	
 	/**
@@ -33,7 +52,7 @@ public class ArrayListSorter {
 	 * @throws exception - description for why exception was thrown
 	 * @return return description
 	 */	
-	public static <T extends Comparable<? super T>> void quicksort(ArrayList<T>) {
+	public static <T extends Comparable<? super T>> void quicksort(ArrayList<T> arrayList) {
 		
 	}
 	
@@ -47,7 +66,7 @@ public class ArrayListSorter {
 	 */	
 	public static ArrayList<Integer> generateAscending(int size) {
 		ArrayList<Integer> generatedAscendingArray = new ArrayList<>();
-		for (int i = 0; i < size; i++) 
+		for (int i = 1; i < size + 1; i++) 
 			generatedAscendingArray.add(i);
 		return generatedAscendingArray;
 	}
@@ -62,7 +81,7 @@ public class ArrayListSorter {
 	 */	
 	public static ArrayList<Integer> generatePermuted(int size) {
 		ArrayList<Integer> arrayToShuffle = new ArrayList<>();
-		for (int i = 0; i < size; i++) 
+		for (int i = 1; i < size + 1; i++) 
 			arrayToShuffle.add(i);
 		Collections.shuffle(arrayToShuffle);
 		return arrayToShuffle;
