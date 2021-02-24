@@ -2,8 +2,7 @@ package assign05;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
+import java.util.Random;
 
 /**
  * Add description here
@@ -16,6 +15,8 @@ public class ArrayListSorter {
 	
 	private static final int MERGE_INSERTION_SORT_MAX = 5;
 	private static final int PIVOT_METHOD = 0;
+	
+	private static Random rng = new Random();
 	
 	/**
 	 * Add Description here
@@ -105,8 +106,9 @@ public class ArrayListSorter {
 	private static <T extends Comparable<? super T>> int partition(ArrayList<T> arrayList, int left, int right) {
 		int pivot = pickPivot(arrayList, right, left);
 
-		T pivotElement = arrayList.set(pivot, arrayList.get(right));
-		arrayList.set(right, pivotElement); //swaps pivot and element at end of sublist to move the pivot element out of the way
+		T pivotElement = arrayList.get(pivot);
+		swap(arrayList, right, pivot); //swaps pivot and element at end of sublist to move the pivot element out of the way
+		
 		int leftCursor = left; //set left cursor to start of sublist
 		int rightCursor = right; //set right cursor to end of sublist
 		
@@ -115,11 +117,9 @@ public class ArrayListSorter {
 				leftCursor++;
 			while (arrayList.get(rightCursor).compareTo(pivotElement) > 0) //while element at right cursor is greater than the pivot
 				rightCursor--;
-			T tempRightSwap = arrayList.set(rightCursor, arrayList.get(leftCursor));
-			arrayList.set(leftCursor, tempRightSwap); //swaps elements at right and left cursor
+			swap(arrayList, leftCursor, rightCursor); //swaps elements at right and left cursor
 		}
-		arrayList.set(right, arrayList.get(rightCursor));
-		arrayList.set(rightCursor, pivotElement); //restore the pivot: swap with leftmost element greater than the pivot
+		swap(arrayList, right, rightCursor);//restore the pivot: swap with leftmost element greater than the pivot
 		
 		return rightCursor; //return the index of the pivot, we just put the pivot element at index rightCursor
 	}
@@ -134,21 +134,32 @@ public class ArrayListSorter {
 	 * @return int pivot, the index to be used as a pivot value
 	 */
 	private static <T extends Comparable<? super T>> int pickPivot(ArrayList<T> arrayList, int left, int right) {
-		int pivot = 0;
+		int middle = (right - left) / 2;
 		
 		switch(PIVOT_METHOD) {
 		case 0: //middle index
-			pivot = (right - left) / 2;
-			break;
+			return middle;
 		case 1: //median of three
+			if (arrayList.get(left).compareTo(arrayList.get(middle)) > 0)
+				swap(arrayList, left, middle);
+			if (arrayList.get(left).compareTo(arrayList.get(right)) > 0)
+				swap(arrayList, left, right);
+			if (arrayList.get(middle).compareTo(arrayList.get(right)) > 0)
+				swap(arrayList, middle, right);
+//			swap(arrayList, middle, right - 1);
 			
-			break;
-		case 2:	
-			
-			break;
+			return middle;
+		case 2:	//random index
+			return rng.nextInt(right + 1);
+		default:
+			return 0;
 		}
-		
-		return pivot;
+	}
+	
+	private static <T extends Comparable<? super T>> void swap(ArrayList<T> arrayList, int indexOne, int indexTwo) {
+		T tempTwo = arrayList.get(indexTwo);
+		arrayList.set(indexTwo, arrayList.get(indexOne));
+		arrayList.set(indexOne, tempTwo);
 	}
 	
 	/**This method performs insertion sort on an arrayList of generic comparable type, between a start and end index.
