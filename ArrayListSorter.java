@@ -2,6 +2,8 @@ package assign05;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 
 /**
  * Add description here
@@ -11,6 +13,8 @@ import java.util.Collections;
  */
 
 public class ArrayListSorter {
+	
+	private static final int MERGE_INSERTION_SORT_MAX = 5;
 	
 	/**
 	 * Add Description here
@@ -34,36 +38,40 @@ public class ArrayListSorter {
 	}
 	
 	private static <T extends Comparable<? super T>> void merge(ArrayList<T> arrayList, ArrayList<T> tempArrayList, int leftStart, int rightStart, int rightBound) {
-		int leftCursor = leftStart;
-		int rightCursor = rightStart;
-		int leftBound = rightStart - 1; 
-		int tempIndex = leftStart;
-		while (leftCursor <= leftBound && rightCursor <= rightBound) {
-			if (arrayList.get(leftCursor).compareTo(arrayList.get(rightCursor)) < 0) { //if element at left cursor is "less than" element at right cursor
-				tempArrayList.set(tempIndex, arrayList.get(leftCursor)); //set next position of temp list to be element at left cursor
-				tempIndex++;
-				leftCursor++;
-				
-			} else {
-				tempArrayList.set(tempIndex, arrayList.get(rightCursor)); //set next position of temp list to be element at right cursor
+		if (rightBound - rightStart > MERGE_INSERTION_SORT_MAX)  {
+			int leftCursor = leftStart;
+			int rightCursor = rightStart;
+			int leftBound = rightStart - 1; 
+			int tempIndex = leftStart;
+			while (leftCursor <= leftBound && rightCursor <= rightBound) {
+				if (arrayList.get(leftCursor).compareTo(arrayList.get(rightCursor)) < 0) { //if element at left cursor is "less than" element at right cursor
+					tempArrayList.set(tempIndex, arrayList.get(leftCursor)); //set next position of temp list to be element at left cursor
+					tempIndex++;
+					leftCursor++;
+					
+				} else {
+					tempArrayList.set(tempIndex, arrayList.get(rightCursor)); //set next position of temp list to be element at right cursor
+					tempIndex++;
+					rightCursor++;
+				}
+			}
+			if (leftCursor <= leftBound) { //if elements remain in the left sublist
+				while(leftCursor <= leftBound) {
+					tempArrayList.set(tempIndex, arrayList.get(leftCursor));
+					tempIndex++;
+					leftCursor++;
+				}
+			}
+			if (rightCursor <= rightBound) {
+				tempArrayList.set(tempIndex, arrayList.get(rightCursor));
 				tempIndex++;
 				rightCursor++;
 			}
-		}
-		if (leftCursor <= leftBound) { //if elements remain in the left sublist
-			while(leftCursor <= leftBound) {
-				tempArrayList.set(tempIndex, arrayList.get(leftCursor));
-				tempIndex++;
-				leftCursor++;
+			for (int i = leftStart; i < rightBound + 1; i++) {
+				arrayList.set(i, tempArrayList.get(i));
 			}
-		}
-		if (rightCursor <= rightBound) {
-			tempArrayList.set(tempIndex, arrayList.get(rightCursor));
-			tempIndex++;
-			rightCursor++;
-		}
-		for (int i = leftStart; i < rightBound + 1; i++) {
-			arrayList.set(i, tempArrayList.get(i));
+		} else {
+			insertionSort(arrayList, leftStart, rightBound);
 		}
 	}
 	
@@ -82,7 +90,28 @@ public class ArrayListSorter {
 	 * @return return description
 	 */	
 	public static <T extends Comparable<? super T>> void quicksort(ArrayList<T> arrayList) {
+		quicksort(arrayList, 0, arrayList.size() - 1);
+	}
+	
+	private static <T extends Comparable<? super T>> void quicksort(ArrayList<T> arrayList, int left, int right) {
 		
+	}
+	
+	private static <T extends Comparable<? super T>> void insertionSort(ArrayList<T> arrayList, int leftStart, int rightBound) {
+		// Loops over each element of arrayList other than the first
+		for (int i = leftStart + 1; i < rightBound + 1; i++) {
+
+			// Stores element determined by iteration of the loop
+			T val = arrayList.get(i);
+
+			// Shifts values larger than i but placed lower than i in the array up 1 index
+			int j;
+			for (j = i - 1; j >= 0 && (arrayList.get(j).compareTo(val) > 0); j--)
+				arrayList.set(j +1, arrayList.get(j));
+
+			// Places value in the open space created by the shift of larger values
+			arrayList.set(j + 1, val);
+		}
 	}
 	
 	/**
