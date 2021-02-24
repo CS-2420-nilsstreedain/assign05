@@ -15,6 +15,7 @@ import java.util.Iterator;
 public class ArrayListSorter {
 	
 	private static final int MERGE_INSERTION_SORT_MAX = 5;
+	private static final int PIVOT_METHOD = 0;
 	
 	/**
 	 * Add Description here
@@ -94,9 +95,68 @@ public class ArrayListSorter {
 	}
 	
 	private static <T extends Comparable<? super T>> void quicksort(ArrayList<T> arrayList, int left, int right) {
-		
+		if(left < right) {
+			int pivot = partition(arrayList, left, right);
+			quicksort(arrayList, left, pivot);
+			quicksort(arrayList, pivot + 1, right);
+		}
 	}
 	
+	private static <T extends Comparable<? super T>> int partition(ArrayList<T> arrayList, int left, int right) {
+		int pivot = pickPivot(arrayList, right, left);
+
+		T pivotElement = arrayList.set(pivot, arrayList.get(right));
+		arrayList.set(right, pivotElement); //swaps pivot and element at end of sublist to move the pivot element out of the way
+		int leftCursor = left; //set left cursor to start of sublist
+		int rightCursor = right; //set right cursor to end of sublist
+		
+		while(leftCursor < rightCursor) {
+			while (arrayList.get(leftCursor).compareTo(pivotElement) <= 0) //while element at left cursor is less than or equal to the pivot
+				leftCursor++;
+			while (arrayList.get(rightCursor).compareTo(pivotElement) > 0) //while element at right cursor is greater than the pivot
+				rightCursor--;
+			T tempRightSwap = arrayList.set(rightCursor, arrayList.get(leftCursor));
+			arrayList.set(leftCursor, tempRightSwap); //swaps elements at right and left cursor
+		}
+		arrayList.set(right, arrayList.get(rightCursor));
+		arrayList.set(rightCursor, pivotElement); //restore the pivot: swap with leftmost element greater than the pivot
+		
+		return rightCursor; //return the index of the pivot, we just put the pivot element at index rightCursor
+	}
+	
+	/**This method picks a pivot for an arrayList between specific bounds. This method also
+	 * changes the way in which it picks a pivot based on a private final variable in this class,
+	 * to allow the comparison of pivot picking methods.
+	 * @param <T> a generic type that extends comparable
+	 * @param arrayList the arrayList to pick the pivot value for
+	 * @param left the minimum index to be included in the array the pivot is picked for
+	 * @param right the maximum index to be included in the array the pivot is picked for
+	 * @return int pivot, the index to be used as a pivot value
+	 */
+	private static <T extends Comparable<? super T>> int pickPivot(ArrayList<T> arrayList, int left, int right) {
+		int pivot = 0;
+		
+		switch(PIVOT_METHOD) {
+		case 0: //middle index
+			pivot = (right - left) / 2;
+			break;
+		case 1: //median of three
+			
+			break;
+		case 2:	
+			
+			break;
+		}
+		
+		return pivot;
+	}
+	
+	/**This method performs insertion sort on an arrayList of generic comparable type, between a start and end index.
+	 * @param <T> a generic type that extends comparable
+	 * @param arrayList the arrayList to perform an insertion sort inside
+	 * @param leftStart the minimum index to be included in the sort
+	 * @param rightBound the maximum index to be included in the sort
+	 */
 	private static <T extends Comparable<? super T>> void insertionSort(ArrayList<T> arrayList, int leftStart, int rightBound) {
 		// Loops over each element of arrayList other than the first
 		for (int i = leftStart + 1; i < rightBound + 1; i++) {
