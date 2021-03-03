@@ -57,102 +57,102 @@ class ArrayListSorterTester {
 // 
 // MERGE SORT TESTS
 //
-//	@Test
-//	void testEmptyIntegerArrayMerge() {
-//		ArrayListSorter.mergesort(emptyIntegerArray);
-//		
-//		assertEquals(new ArrayList<Integer>() , emptyIntegerArray);
-//	}
-//	
-//	@Test
-//	void testOneIntegerArrayMerge() {
-//		ArrayList<Integer> testCopy = copyAndSort(oneIntegerArray);
-//		ArrayListSorter.mergesort(oneIntegerArray);
-//
-//		assertEquals(testCopy, oneIntegerArray);
-//	}
-//	
-//	@Test
-//	void testSmallAscendingIntegerArrayMerge() {
-//		ArrayList<Integer> testCopy = copyAndSort(smallAscendingIntegerArray);
-//		ArrayListSorter.mergesort(smallAscendingIntegerArray);
-//		
-//		assertEquals(testCopy, smallAscendingIntegerArray);
-//	}
-//	
-//	@Test
-//	void testSmallPermutedIntegerArrayMerge() {
-//		ArrayList<Integer> testCopy = copyAndSort(smallPermutedIntegerArray);
-//		ArrayListSorter.mergesort(smallPermutedIntegerArray);
-//		
-//		assertEquals(testCopy, smallPermutedIntegerArray);
-//	}
-//
-//	@Test
-//	void testSmallDescendingIntegerArrayMerge() {
-//		ArrayList<Integer> testCopy = copyAndSort(smallDescendingIntegerArray);
-//		ArrayListSorter.mergesort(smallDescendingIntegerArray);
-//		
-//		assertEquals(testCopy, smallDescendingIntegerArray);
-//	}
-//	
-//	
-//	@Test
-//	void testMediumAscendingIntegerArrayMerge() {
-//		ArrayList<Integer> testCopy = copyAndSort(mediumAscendingIntegerArray);
-//		ArrayListSorter.mergesort(mediumAscendingIntegerArray);
-//		
-//		assertEquals(testCopy, mediumAscendingIntegerArray);
-//	}
-//	
-//	@Test
-//	void testMediumPermutedIntegerArrayMerge() {
-//		ArrayList<Integer> testCopy = copyAndSort(mediumPermutedIntegerArray);
-//		ArrayListSorter.mergesort(mediumPermutedIntegerArray);
-//		
-//		assertEquals(testCopy, mediumPermutedIntegerArray);
-//	}
-//
-//	@Test
-//	void testMediumDescendingIntegerArrayMerge() {
-//		ArrayList<Integer> testCopy = copyAndSort(mediumDescendingIntegerArray);
-//		ArrayListSorter.mergesort(mediumDescendingIntegerArray);
-//		
-//		assertEquals(testCopy, mediumDescendingIntegerArray);
-//	}
-//	
-//	@Test
-//	void testBigAscendingIntegerArrayMerge() {
-//		ArrayList<Integer> testCopy = copyAndSort(bigAscendingIntegerArray);
-//		ArrayListSorter.mergesort(bigAscendingIntegerArray);
-//		
-//		assertEquals(testCopy, bigAscendingIntegerArray);
-//	}
-//	
-//	@Test
-//	void testBigPermutedIntegerArrayMerge() {
-//		ArrayList<Integer> testCopy = copyAndSort(bigPermutedIntegerArray);
-//		ArrayListSorter.mergesort(bigPermutedIntegerArray);
-//		
-//		assertEquals(testCopy, bigPermutedIntegerArray);
-//	}
-//	
-//	@Test
-//	void testBigDescendingIntegerArrayMerge() {
-//		ArrayList<Integer> testCopy = copyAndSort(bigDescendingIntegerArray);
-//		ArrayListSorter.mergesort(bigDescendingIntegerArray);
-//		
-//		assertEquals(testCopy, bigDescendingIntegerArray);
-//	}
-//	
-//	@Test
-//	void testSmallStringArrayMerge() {
-//		ArrayList<String> testCopy = copyAndSort(smallStringArray);
-//		ArrayListSorter.mergesort(smallStringArray);
-//		
-//		assertEquals(testCopy, smallStringArray);
-//	}
-//	
+	@Test
+	void testEmptyIntegerArrayMerge() {
+		ArrayListSorter.mergesort(emptyIntegerArray);
+		
+		assertEquals(new ArrayList<Integer>() , emptyIntegerArray);
+	}
+	
+	@Test
+	void testOneIntegerArrayMerge() {
+		ArrayList<Integer> testCopy = copyAndSort(oneIntegerArray);
+		ArrayListSorter.mergesort(oneIntegerArray);
+
+		assertEquals(testCopy, oneIntegerArray);
+	}
+	
+	@Test
+	void testSmallAscendingIntegerArrayMerge() {
+		ArrayList<Integer> testCopy = copyAndSort(smallAscendingIntegerArray);
+		ArrayListSorter.mergesort(smallAscendingIntegerArray);
+		
+		assertEquals(testCopy, smallAscendingIntegerArray);
+	}
+	
+	@Test
+	void testSmallPermutedIntegerArrayMerge() {
+		ArrayList<Integer> testCopy = copyAndSort(smallPermutedIntegerArray);
+		ArrayListSorter.mergesort(smallPermutedIntegerArray);
+		
+		assertEquals(testCopy, smallPermutedIntegerArray);
+	}
+
+	@Test
+	void testSmallDescendingIntegerArrayMerge() {
+		ArrayList<Integer> testCopy = copyAndSort(smallDescendingIntegerArray);
+		ArrayListSorter.mergesort(smallDescendingIntegerArray);
+		
+		assertEquals(testCopy, smallDescendingIntegerArray);
+	}
+	
+	
+	@Test
+	void testMediumAscendingIntegerArrayMerge() {
+		ArrayList<Integer> testCopy = copyAndSort(mediumAscendingIntegerArray);
+		ArrayListSorter.mergesort(mediumAscendingIntegerArray);
+		
+		assertEquals(testCopy, mediumAscendingIntegerArray);
+	}
+	
+	@Test
+	void testMediumPermutedIntegerArrayMerge() {
+		ArrayList<Integer> testCopy = copyAndSort(mediumPermutedIntegerArray);
+		ArrayListSorter.mergesort(mediumPermutedIntegerArray);
+		
+		assertEquals(testCopy, mediumPermutedIntegerArray);
+	}
+
+	@Test
+	void testMediumDescendingIntegerArrayMerge() {
+		ArrayList<Integer> testCopy = copyAndSort(mediumDescendingIntegerArray);
+		ArrayListSorter.mergesort(mediumDescendingIntegerArray);
+		
+		assertEquals(testCopy, mediumDescendingIntegerArray);
+	}
+	
+	@Test
+	void testBigAscendingIntegerArrayMerge() {
+		ArrayList<Integer> testCopy = copyAndSort(bigAscendingIntegerArray);
+		ArrayListSorter.mergesort(bigAscendingIntegerArray);
+		
+		assertEquals(testCopy, bigAscendingIntegerArray);
+	}
+	
+	@Test
+	void testBigPermutedIntegerArrayMerge() {
+		ArrayList<Integer> testCopy = copyAndSort(bigPermutedIntegerArray);
+		ArrayListSorter.mergesort(bigPermutedIntegerArray);
+		
+		assertEquals(testCopy, bigPermutedIntegerArray);
+	}
+	
+	@Test
+	void testBigDescendingIntegerArrayMerge() {
+		ArrayList<Integer> testCopy = copyAndSort(bigDescendingIntegerArray);
+		ArrayListSorter.mergesort(bigDescendingIntegerArray);
+		
+		assertEquals(testCopy, bigDescendingIntegerArray);
+	}
+	
+	@Test
+	void testSmallStringArrayMerge() {
+		ArrayList<String> testCopy = copyAndSort(smallStringArray);
+		ArrayListSorter.mergesort(smallStringArray);
+		
+		assertEquals(testCopy, smallStringArray);
+	}
+	
 //	
 // QUICK SORT TESTS
 //	
@@ -250,5 +250,42 @@ class ArrayListSorterTester {
 		ArrayListSorter.quicksort(smallStringArray);
 		
 		assertEquals(testCopy, smallStringArray);
+	}
+	
+//
+// GENERATE ARRAYLIST TESTS
+//
+	@Test
+	void testGenerateAscending() {
+		ArrayList<Integer> smallAscending = ArrayListSorter.generateAscending(10);
+		ArrayList<Integer> comparisonList = new ArrayList<>();
+		for (int i = 1; i < 11; i++)
+			comparisonList.add(i);
+		assertEquals(comparisonList, smallAscending);
+		assertEquals(10, smallAscending.size());
+	}
+	
+	@Test 
+	void testGeneratePermuted() {
+		ArrayList<Integer> smallPermuted = ArrayListSorter.generatePermuted(10);
+		
+		boolean isTooLarge = false;
+		for (int i : smallPermuted) {
+			if (i > 10)
+				isTooLarge = true;
+		}
+			
+		assertFalse(isTooLarge);
+		assertEquals(10, smallPermuted.size());
+	}
+	
+	@Test 
+	void testGenerateDescending() {
+		ArrayList<Integer> smallDescending = ArrayListSorter.generateDescending(10);
+		ArrayList<Integer> comparisonList = new ArrayList<>();
+		for (int i = 10; i > 0; i--)
+			comparisonList.add(i);
+		assertEquals(comparisonList, smallDescending);
+		assertEquals(10, smallDescending.size());
 	}
 }
