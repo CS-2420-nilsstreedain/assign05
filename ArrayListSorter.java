@@ -93,36 +93,51 @@ public class ArrayListSorter {
 	 * @return return description
 	 */	
 	public static <T extends Comparable<? super T>> void quicksort(ArrayList<T> arrayList) {
+		// Uses the private quicksort driver method to add parameters for recursion
 		quicksort(arrayList, 0, arrayList.size() - 1);
 	}
 	
 	private static <T extends Comparable<? super T>> void quicksort(ArrayList<T> arrayList, int left, int right) {
+		// Checks that the leftmost index of the sublist is less than the right
 		if(left < right) {
+			// Defines the pivot for the recursive quicksort methods
 			int pivot = partition(arrayList, left, right);
-			quicksort(arrayList, left, pivot);
+			
+			// Quicksorts both sides of the pivot
+			quicksort(arrayList, left, pivot - 1);
 			quicksort(arrayList, pivot + 1, right);
 		}
 	}
 	
-	private static <T extends Comparable<? super T>> int partition(ArrayList<T> arrayList, int left, int right) {
-		int pivot = pickPivot(arrayList, right, left);
+	private static <T extends Comparable<? super T>> int partition(ArrayList<T> arrayList, int start, int end) {
+		int pivot = pickPivot(arrayList, start, end);
 
+		// Finds the pivot element and then swaps it with the rightmost element in the sublist
 		T pivotElement = arrayList.get(pivot);
-		swap(arrayList, right, pivot); //swaps pivot and element at end of sublist to move the pivot element out of the way
+		swap(arrayList, end, pivot);
 		
-		int leftCursor = left; //set left cursor to start of sublist
-		int rightCursor = right; //set right cursor to end of sublist
+		// Sets the left and right cursors based on the start and end of the sublist
+		int leftCursor = start - 1;
+		int rightCursor = end;
 		
+		// Loops while the left cursor is less than the right cursor
 		while(leftCursor < rightCursor) {
-			while (arrayList.get(leftCursor).compareTo(pivotElement) <= 0) //while element at left cursor is less than or equal to the pivot
-				leftCursor++;
-			while (arrayList.get(rightCursor).compareTo(pivotElement) > 0) //while element at right cursor is greater than the pivot
-				rightCursor--;
-			swap(arrayList, leftCursor, rightCursor); //swaps elements at right and left cursor
+			// While element at left cursor is less than the pivot
+			while (leftCursor < end && arrayList.get(++leftCursor).compareTo(pivotElement) < 0);
+			
+			// While element at right cursor is greater than the pivot
+			while (rightCursor > start && arrayList.get(--rightCursor).compareTo(pivotElement) > 0);
+
+			// Swaps elements at right and left cursor if left element is less than right
+			if (leftCursor < rightCursor)
+				swap(arrayList, leftCursor, rightCursor);
 		}
-		swap(arrayList, right, rightCursor);//restore the pivot: swap with leftmost element greater than the pivot
 		
-		return rightCursor; //return the index of the pivot, we just put the pivot element at index rightCursor
+		// Restore the pivot: swap with leftmost element greater than the pivot
+		swap(arrayList, end, leftCursor);
+		
+		// Return the index of the pivot
+		return leftCursor;
 	}
 	
 	/**This method picks a pivot for an arrayList between specific bounds. This method also
@@ -135,11 +150,11 @@ public class ArrayListSorter {
 	 * @return int pivot, the index to be used as a pivot value
 	 */
 	private static <T extends Comparable<? super T>> int pickPivot(ArrayList<T> arrayList, int left, int right) {
-		int middle = (right - left) / 2;
+		int middle = left + ((right - left) / 2);
 		
 		switch(PIVOT_METHOD) {
 		case 0: //middle index
-			return Math.abs(middle);
+			return middle;
 		case 1: //median of three
 			if (arrayList.get(left).compareTo(arrayList.get(middle)) > 0)
 				swap(arrayList, left, middle);
@@ -147,7 +162,7 @@ public class ArrayListSorter {
 				swap(arrayList, left, right);
 			if (arrayList.get(middle).compareTo(arrayList.get(right)) > 0)
 				swap(arrayList, middle, right);
-//			swap(arrayList, middle, right - 1);
+			swap(arrayList, middle, right - 1);
 			
 			return middle;
 		case 2:	//random index
