@@ -14,7 +14,7 @@ import java.util.Random;
 public class ArrayListSorter {
 
 	private static final int MERGE_INSERTION_SORT_MAX = 5;
-	private static final int PIVOT_METHOD = 0;
+	private static final int PIVOT_METHOD = 1;
 
 	private static Random rng = new Random();
 
@@ -223,7 +223,7 @@ public class ArrayListSorter {
 	 * This method picks a pivot for an arrayList between specific bounds. This
 	 * method also changes the way in which it picks a pivot based on a private
 	 * final variable in this class, to allow the comparison of pivot picking
-	 * methods. If no method, or a non-existant method is chosen,index 0 will be
+	 * methods. If no method, or a non-existant method is chosen, left index will be
 	 * returned.
 	 * 
 	 * @param <T>       - a generic type that extends comparable
@@ -237,33 +237,35 @@ public class ArrayListSorter {
 
 		// Determines the pivot method to be used for quicksort.
 		switch (PIVOT_METHOD) {
-		// Returns index in the middle of left and right
-		case 0:
-			return middle;
 
 		// Returns the median of three values, the leftmost index, the rightmost index,
 		// and the middle index
-		case 1:
+		case 0:
+			// Compares left and middle and puts the larger in the middle
 			if (arrayList.get(left).compareTo(arrayList.get(middle)) > 0)
 				swap(arrayList, left, middle);
 
+			// Compares left and right and puts the larger in the right
 			if (arrayList.get(left).compareTo(arrayList.get(right)) > 0)
 				swap(arrayList, left, right);
 
+			// Compares middle and right and puts the larger in the right
 			if (arrayList.get(middle).compareTo(arrayList.get(right)) > 0)
 				swap(arrayList, middle, right);
+			
+			return middle;
 
-			swap(arrayList, middle, right - 1);
-
+		// Returns index in the middle of left and right
+		case 1:
 			return middle;
 
 		// Returns a random index
 		case 2:
 			return left + rng.nextInt(right - left + 1);
 
-		// If no method, or a non-existent method is chosen,index 0 will be returned.
+		// If no method, or a non-existent method is chosen, left index will be returned.
 		default:
-			return 0;
+			return left;
 		}
 	}
 
