@@ -35,9 +35,9 @@ class ArrayListSorterTester {
 		smallAscendingIntegerArray = ArrayListSorter.generateAscending(10);
 		smallPermutedIntegerArray = ArrayListSorter.generatePermuted(10);
 		smallDescendingIntegerArray = ArrayListSorter.generateDescending(10);
-		mediumAscendingIntegerArray = ArrayListSorter.generateAscending(14);
-		mediumPermutedIntegerArray = ArrayListSorter.generatePermuted(14);
-		mediumDescendingIntegerArray = ArrayListSorter.generateDescending(14);
+		mediumAscendingIntegerArray = ArrayListSorter.generateAscending(1000);
+		mediumPermutedIntegerArray = ArrayListSorter.generatePermuted(1000);
+		mediumDescendingIntegerArray = ArrayListSorter.generateDescending(1000);
 	}
 	
 	@Test

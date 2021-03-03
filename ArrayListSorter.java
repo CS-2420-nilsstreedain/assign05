@@ -57,14 +57,13 @@ public class ArrayListSorter {
 					rightCursor++;
 				}
 			}
-			if (leftCursor <= leftBound) { //if elements remain in the left sublist
-				while(leftCursor <= leftBound) {
-					tempArrayList.set(tempIndex, arrayList.get(leftCursor));
-					tempIndex++;
-					leftCursor++;
-				}
+			//if elements remain in the left sublist
+			while(leftCursor <= leftBound) {
+				tempArrayList.set(tempIndex, arrayList.get(leftCursor));
+				tempIndex++;
+				leftCursor++;
 			}
-			if (rightCursor <= rightBound) {
+			while(rightCursor <= rightBound) {
 				tempArrayList.set(tempIndex, arrayList.get(rightCursor));
 				tempIndex++;
 				rightCursor++;
@@ -178,7 +177,7 @@ public class ArrayListSorter {
 			// Shifts values larger than i but placed lower than i in the array up 1 index
 			int j;
 			for (j = i - 1; j >= 0 && (arrayList.get(j).compareTo(val) > 0); j--)
-				arrayList.set(j +1, arrayList.get(j));
+				arrayList.set(j + 1, arrayList.get(j));
 
 			// Places value in the open space created by the shift of larger values
 			arrayList.set(j + 1, val);
