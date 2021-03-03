@@ -139,7 +139,7 @@ public class ArrayListSorter {
 		
 		switch(PIVOT_METHOD) {
 		case 0: //middle index
-			return middle;
+			return Math.abs(middle);
 		case 1: //median of three
 			if (arrayList.get(left).compareTo(arrayList.get(middle)) > 0)
 				swap(arrayList, left, middle);
