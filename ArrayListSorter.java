@@ -32,15 +32,19 @@ public class ArrayListSorter {
 	
 	private static <T extends Comparable<? super T>> void mergesort(ArrayList<T> arrayList, ArrayList<T> tempArrayList, int left, int right) {
 		if (left < right) {
-			int mid = (left + right) / 2;
-			mergesort(arrayList, tempArrayList, left, mid);
-			mergesort(arrayList, tempArrayList, mid + 1, right);
-			merge(arrayList, tempArrayList, left, mid + 1, right);
+			if (right - left > MERGE_INSERTION_SORT_MAX)  {
+				int mid = (left + right) / 2;
+				mergesort(arrayList, tempArrayList, left, mid);
+				mergesort(arrayList, tempArrayList, mid + 1, right);
+				merge(arrayList, tempArrayList, left, mid + 1, right);
+			} else {
+				insertionSort(arrayList, left, right);
+			}
 		}
 	}
 	
 	private static <T extends Comparable<? super T>> void merge(ArrayList<T> arrayList, ArrayList<T> tempArrayList, int leftStart, int rightStart, int rightBound) {
-		if (rightBound - rightStart > MERGE_INSERTION_SORT_MAX)  {
+
 			int leftCursor = leftStart;
 			int rightCursor = rightStart;
 			int leftBound = rightStart - 1; 
@@ -71,10 +75,8 @@ public class ArrayListSorter {
 			for (int i = leftStart; i < rightBound + 1; i++) {
 				arrayList.set(i, tempArrayList.get(i));
 			}
-		} else {
-			insertionSort(arrayList, leftStart, rightBound);
-		}
-	}
+		} 
+	
 	
 	private static <T extends Comparable<? super T>> ArrayList<T> generateEmptyArrayList(int n) {
 		ArrayList<T> arrayList = new ArrayList<>();
@@ -176,7 +178,7 @@ public class ArrayListSorter {
 
 			// Shifts values larger than i but placed lower than i in the array up 1 index
 			int j;
-			for (j = i - 1; j >= 0 && (arrayList.get(j).compareTo(val) > 0); j--)
+			for (j = i - 1; j >= leftStart && (arrayList.get(j).compareTo(val) > 0); j--)
 				arrayList.set(j + 1, arrayList.get(j));
 
 			// Places value in the open space created by the shift of larger values
