@@ -259,9 +259,9 @@ public class ArrayListSorter {
 
 		// Returns a random index
 		case 2:
-			return rng.nextInt(right + 1);
+			return left + rng.nextInt(right - left + 1);
 
-		// If no method, or a non-existant method is chosen,index 0 will be returned.
+		// If no method, or a non-existent method is chosen,index 0 will be returned.
 		default:
 			return 0;
 		}
