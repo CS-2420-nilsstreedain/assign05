@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.Random;
 
 /**
- * Add description here
+ * This class contains static sorting methods that can be called on ArrayLists
+ * the implement comparable. This class also contains methods to generate
+ * Integer ArrayLists in Ascending, Descending and Permuted orders.
  * 
  * @author Nils Streedain, Paul Nuffer
  * @version February 22, 2021
@@ -15,7 +17,7 @@ public class ArrayListSorter {
 
 	private static final int INSERTION_SORT_THRESHOLD = 7;
 	private static final int PIVOT_METHOD = 1;
-	
+
 	private static final int seed = 123;
 	private static Random rng = new Random(seed);
 
@@ -56,11 +58,11 @@ public class ArrayListSorter {
 			if (right - left > INSERTION_SORT_THRESHOLD) {
 				// Finds the missle index between left and right
 				int mid = (left + right) / 2;
-				
+
 				// Recursively sorts the left and right side of the middle element
 				mergesort(arrayList, tempArrayList, left, mid);
 				mergesort(arrayList, tempArrayList, mid + 1, right);
-				
+
 				// Merges the sorted sublists from the previous step
 				merge(arrayList, tempArrayList, left, mid + 1, right);
 			} else {
@@ -253,7 +255,7 @@ public class ArrayListSorter {
 			// Compares middle and right and puts the larger in the right
 			if (arrayList.get(middle).compareTo(arrayList.get(right)) > 0)
 				swap(arrayList, middle, right);
-			
+
 			return middle;
 
 		// Returns index in the middle of left and right
@@ -264,7 +266,8 @@ public class ArrayListSorter {
 		case 2:
 			return left + rng.nextInt(right - left + 1);
 
-		// If no method, or a non-existent method is chosen, left index will be returned.
+		// If no method, or a non-existent method is chosen, left index will be
+		// returned.
 		default:
 			return left;
 		}
