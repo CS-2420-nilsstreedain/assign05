@@ -3,29 +3,27 @@ package assign05;
 import java.util.ArrayList;
 
 /**
- * This class collects running times for methods of SimplePriorityQueue.
+ * This class collects running times for methods of ArrayListSorter.
  * 
- * @author Erin Parker
+ * @author Erin Parker, Paul Nuffer, Nils Streedain
  * @version February 9, 2021
  */
 public class ArrayListSorterTimer {
 	
 	public static void main(String[] args) {
 		System.out.println("\nN\tnanoTime\tT(N)/N\t\tT(N)/NlogN\tT(N)/N^2");
+		
 		int incr = 100000;
 		for(int probSize = 100000; probSize <= 1000000; probSize += incr) {
 			
-			
 			int timesToLoop = 500;
-			
 
 			// First, spin computing stuff until one second has gone by.
 			// This allows this thread to stabilize.
 
 			long stopTime, midpointTime, startTime = System.nanoTime();
 
-			while(System.nanoTime() - startTime < 1000000000) { // empty block
-			}
+			while(System.nanoTime() - startTime < 1000000000) {}
 
 			// Collect running times.
 			startTime = System.nanoTime();
