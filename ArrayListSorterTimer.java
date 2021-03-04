@@ -12,7 +12,8 @@ import java.util.Random;
 public class ArrayListSorterTimer {
 	
 	public static void main(String[] args) {
-		System.out.println("\nN\tnanoTime\tT(N)/N\tT(N)/NlogN\tT(N)/N^2");
+		System.out.println("\nN\t|  nanoTime\t\tT(N)/N\t\tT(N)/NlogN\tT(N)/N^2");
+		System.out.println("-----------------------------------------------------------------------------------");
 		int incr = 30000;
 		for(int probSize = 30000; probSize <= 400000; probSize += incr) {
 			
@@ -50,10 +51,12 @@ public class ArrayListSorterTimer {
 			// Average it over the number of runs.
 			double averageTime = ((midpointTime - startTime) - 
 						(stopTime - midpointTime)) / (double) timesToLoop;
-			System.out.println(probSize + "\t" + averageTime + "\t" + 
-					(averageTime / probSize) + "\t" + 
-					(averageTime / (probSize * (Math.log10(probSize) / Math.log10(2)))) + "\t" +
-					(averageTime / (probSize * probSize)));
+			System.out.println(
+					probSize + "\t|  " + 
+					String.format("%.5f", averageTime) + "\t" +
+					String.format("%.5f", (averageTime / probSize)) + "\t" +
+					String.format("%.5f", (averageTime / (probSize * (Math.log10(probSize) / Math.log10(2))))) + "\t" +
+					String.format("%.5f", (averageTime / (probSize * probSize))));
 			
 		}
 	}
