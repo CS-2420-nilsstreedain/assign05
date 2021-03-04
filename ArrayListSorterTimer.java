@@ -37,6 +37,7 @@ public class ArrayListSorterTimer {
 			// Capture the cost of running the loop and any other operations done
 			// above that are not the essential method call being timed.
 			for(int i = 0; i < timesToLoop; i++) {
+				@SuppressWarnings("unused")
 				ArrayList<Integer> testArrayList = ArrayListSorter.generatePermuted(probSize);
 			}
 
