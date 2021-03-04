@@ -15,8 +15,9 @@ public class ArrayListSorter {
 
 	private static final int INSERTION_SORT_THRESHOLD = 7;
 	private static final int PIVOT_METHOD = 1;
-
-	private static Random rng = new Random();
+	
+	private static final int seed = 123;
+	private static Random rng = new Random(seed);
 
 	/**
 	 * Public driver method used to supply parameters to a private recursive
