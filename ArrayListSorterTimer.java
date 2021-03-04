@@ -12,8 +12,8 @@ public class ArrayListSorterTimer {
 	
 	public static void main(String[] args) {
 		System.out.println("\nN\tnanoTime\tT(N)/N\t\tT(N)/NlogN\tT(N)/N^2");
-		int incr = 30000;
-		for(int probSize = 30000; probSize <= 400000; probSize += incr) {
+		int incr = 100000;
+		for(int probSize = 100000; probSize <= 1000000; probSize += incr) {
 			
 			
 			int timesToLoop = 500;
