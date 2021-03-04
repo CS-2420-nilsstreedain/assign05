@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class ArrayListSorter {
 
-	private static final int MERGE_INSERTION_SORT_MAX = 5;
+	private static final int INSERTION_SORT_THRESHOLD = 7;
 	private static final int PIVOT_METHOD = 1;
 
 	private static Random rng = new Random();
@@ -52,7 +52,7 @@ public class ArrayListSorter {
 
 			// Checks that the difference between right and left is greater than
 			// MERGE_INSERTION_SORT_MAX, if not, insertion sort is used instead of mergesort
-			if (right - left > MERGE_INSERTION_SORT_MAX) {
+			if (right - left > INSERTION_SORT_THRESHOLD) {
 				// Finds the missle index between left and right
 				int mid = (left + right) / 2;
 				
