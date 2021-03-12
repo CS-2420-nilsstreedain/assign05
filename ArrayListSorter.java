@@ -10,7 +10,7 @@ import java.util.Random;
  * Integer ArrayLists in Ascending, Descending and Permuted orders.
  * 
  * @author Nils Streedain, Paul Nuffer
- * @version February 22, 2021
+ * @version February 17, 2021
  */
 
 public class ArrayListSorter {
